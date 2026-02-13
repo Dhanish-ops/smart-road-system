@@ -14,7 +14,7 @@ exports.sendOTP = async (req, res) => {
     specialChars: false,
   });
 
-  const expiresAt = new Date(Date.now() + 5 * 60 * 1000);
+  const expiresAt = new Date(Date.now() + 10 * 60 * 1000);
 
   await OTP.create({ email, otp, expiresAt });
 
@@ -25,6 +25,8 @@ exports.sendOTP = async (req, res) => {
       pass: process.env.EMAIL_PASS,
     },
   });
+  
+module.exports = transporter;
 
   await transporter.sendMail({
     from: process.env.EMAIL_USER,
